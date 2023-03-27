@@ -15,6 +15,7 @@ export default function Navbar() {
           <span>English</span>
           <span>Sign in</span>
           <span>Become a seller</span>
+          <button>Join</button>
         </div>
       </div>
     </div>
