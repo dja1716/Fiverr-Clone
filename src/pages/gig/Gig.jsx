@@ -1,5 +1,5 @@
 import React from "react";
-import "Gig.scss";
+import "./Gig.scss";
 
 export default function Gig() {
   return <div></div>;
