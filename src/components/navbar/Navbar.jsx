@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.scss";
 
 export default function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const { pathname } = useLocation();
 
   const currentUser = {
     id: 1,
@@ -24,14 +26,14 @@ export default function Navbar() {
     };
   }, []);
   return (
-    <div className={active ? "navbar active" : "navbar"}>
+    <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
-        {/* <Link to="/"> */}
-        <div className="logo">
-          <span className="text">fiverr</span>
-          <span className="dot">.</span>
-        </div>
-        {/* </Link> */}
+        <Link to="/" className="link">
+          <div className="logo">
+            <span className="text">fiverr</span>
+            <span className="dot">.</span>
+          </div>
+        </Link>
         <div className="links">
           <span>Fiverr Business</span>
           <span>Explore</span>
@@ -49,13 +51,21 @@ export default function Navbar() {
                   <div className="options">
                     {currentUser?.isSeller && (
                       <>
-                        <span>Gigs</span>
-                        <span>Add new Gig</span>
+                        <Link className="link" to="/mygigs">
+                          Gigs
+                        </Link>
+                        <Link className="link" to="/add">
+                          Add new Gig
+                        </Link>
                       </>
                     )}
-                    <span>Orders</span>
-                    <span>Messages</span>
-                    <span>Logout</span>
+                    <Link className="link" to="orders">
+                      Orders
+                    </Link>
+                    <Link className="link" to="messages">
+                      Messages
+                    </Link>
+                    <Link className="link">Logout</Link>
                   </div>
                 </>
               )}
@@ -64,11 +74,20 @@ export default function Navbar() {
         </div>
       </div>
       <hr />
-      {active && (
+      {(active || pathname !== "/") && (
         <>
           <div className="menu">
-            <span>Test</span>
-            <span>Test2</span>
+            <Link className="link">Test</Link>
+            <Link className="link">Test2</Link>
+
+            <Link className="link">Test</Link>
+            <Link className="link">Test2</Link>
+
+            <Link className="link">Test</Link>
+            <Link className="link">Test2</Link>
+
+            <Link className="link">Test</Link>
+            <Link className="link">Test2</Link>
           </div>
         </>
       )}
